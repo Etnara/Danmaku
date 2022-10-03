@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBulletSpawn : MonoBehaviour{
 
     public GameObject Shots;
-    public Transform BulletSpawn;
+    public Transform[] BulletSpawn;
     float nextShot;
     public float shotRate;
 
@@ -13,8 +13,8 @@ public class EnemyBulletSpawn : MonoBehaviour{
     void FixedUpdate(){
         if (Time.time > nextShot){
             nextShot = Time.time + shotRate;
-            Instantiate(Shots, BulletSpawn.position, BulletSpawn.rotation);
-
+            foreach (Transform pos in BulletSpawn)
+                Instantiate(Shots, pos.position, pos.rotation);
         }
     }
 }
