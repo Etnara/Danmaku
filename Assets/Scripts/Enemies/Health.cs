@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour{
 
@@ -17,6 +16,7 @@ public class Health : MonoBehaviour{
         
         if (other.tag == "Player" || other.tag == "Player Bullet"){
 
+            // Health
             if (currentHealth > 0)
                 currentHealth--;
             
