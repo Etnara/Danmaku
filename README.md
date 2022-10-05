@@ -1,2 +1,2 @@
-# Touhou
+# Danmaku
  
