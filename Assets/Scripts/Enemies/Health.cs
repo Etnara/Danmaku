@@ -28,7 +28,7 @@ public class Health : MonoBehaviour{
             if (other.tag == "Player Bullet")
                 Destroy(other.gameObject);
 
-            Debug.Log("Enemy: " + currentHealth);
+            // Debug.Log("Enemy: " + currentHealth);
         }
     }
 }
