@@ -333,7 +333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 134859155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98556d3efe40994d822476f546d6d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: f6c15845496758e4db92579fbef497e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1834082597}
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 980264282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0fd2feda62c9b74b96911ad6cb1266d, type: 3}
+  m_Script: {fileID: 11500000, guid: fb9699f220f00e44892dd9d6099cd44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MyText: {fileID: 980264284}
@@ -2025,7 +2025,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1354751636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92fe2ec17ac40349ac36db337f95d44, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b0e3c3004b9aa244a210308eb28cf0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1360359827
@@ -2527,7 +2527,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   DBTime: 0.133
+  iTime: 5
   Bomb: {fileID: 1834082597}
+  playerRenderer: {fileID: 1834082591}
 --- !u!114 &1834082597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2537,7 +2539,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834082590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708f707867285e048aa277eadf03e130, type: 3}
+  m_Script: {fileID: 11500000, guid: e7610db6ce366e745ad0cd0d34c493ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startingBombs: 3
@@ -2640,7 +2642,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2047839446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a51109eacd12a458bf81056fa3b66e, type: 3}
+  m_Script: {fileID: 11500000, guid: d4664d5cfc7fa5f43ba7123f45c960c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &2047839450
