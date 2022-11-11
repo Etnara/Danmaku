@@ -2490,14 +2490,22 @@ MonoBehaviour:
   speed: 5
   focus: 0.5
   shotRate: 0.15
-  Shots:
+  upgradeGraze:
+  - 10
+  bulletSpawn: {fileID: 750309717}
+  shots1:
+  - {fileID: 3379425944514081846, guid: 82edf96e79607684d85af1c1283efb94, type: 3}
+  - {fileID: 3627191790589743204, guid: 9ec57b71313de3249bb110505040e25f, type: 3}
+  shots2:
   - {fileID: 9140855428967618104, guid: 1cc71408cc147d64b9c9930dfe525362, type: 3}
   - {fileID: 6408734518977810125, guid: 781b32878d9ecee4ba1e2e1c0dc977f7, type: 3}
   - {fileID: 2211647149462151994, guid: 2468ee16416284c48904273f84af39cf, type: 3}
-  focusedShots:
+  focusedShots1:
+  - {fileID: 1790980371379478603, guid: 3d8ed0978164d7e448f22c98ca807982, type: 3}
+  - {fileID: 7231520062971629254, guid: 073cf2f86399d464bb2528cd870d4da7, type: 3}
+  focusedShots2:
   - {fileID: 2094582781650361201, guid: ae709f421e1f81d4aac388d9aa226ffe, type: 3}
   - {fileID: 7844941909845289123, guid: 3415863fd04572b4d8f161dc6e3713e1, type: 3}
-  BulletSpawn: {fileID: 750309717}
 --- !u!58 &1834082595
 CircleCollider2D:
   m_ObjectHideFlags: 0
