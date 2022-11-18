@@ -12,7 +12,7 @@ public class GrazeCounter : MonoBehaviour{
     void Update()
     {
         
-        MyText.text = "Graze: " + player.graze;
+        MyText.text = "Graze: " + player.Grazes;
 
     }
 }
