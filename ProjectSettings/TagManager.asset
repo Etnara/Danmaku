@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Player Bullet
   - Player Bomb
+  - Item
+  - Collection Zone
   layers:
   - Default
   - TransparentFX

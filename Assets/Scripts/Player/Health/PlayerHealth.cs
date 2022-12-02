@@ -1,94 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerHealth : MonoBehaviour{
+public class PlayerHealth : MonoBehaviour {
 
     public float startingHealth;
-    public float currentHealth {get; private set;}
-    float damageTime;
-    bool hit;
+    public float currentHealth;
+    private float _damageTime;
+    private bool _hit;
     public float DBTime;
     public float iTime;
 
     public PlayerBombs Bomb;
     public SpriteRenderer playerRenderer;
 
-    float t;
-    bool increasing;
+    private float _t;
+    private bool _increasing;
+    private SpriteRenderer _spriteRenderer;
 
-    void Awake(){
+    private void Awake() {
+        _spriteRenderer = playerRenderer.GetComponent<SpriteRenderer>();
         currentHealth = startingHealth;
-        t = 0.0f;
+        _t = 0.0f;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (!other.CompareTag("Damage") && !other.CompareTag("Enemy")) return;
         
-            
-
-        if (other.tag == "Damage" || other.tag == "Enemy"){
-            
-            // Invincible
-            if (damageTime > 0 && Time.time < damageTime + iTime){
-                return;
-            }
-
-            // Deathbombing and Iframe var
-            damageTime = Time.time;                         //Debug.Log(damageTime);
-            hit = true;
-
-            if (currentHealth > 0)
-                currentHealth--;
-            else
-                Destroy(gameObject);
-          
-            // Destroy Bullet
-            if(other.tag == "Damage")
-                Destroy(other.gameObject);
-
-            //Debug.Log("Player: " + currentHealth);
+        // Invincible
+        if (_damageTime > 0 && Time.time < _damageTime + iTime) {
+            return;
         }
+
+        // Deathbombing and Iframe var
+        _damageTime = Time.time;                         //Debug.Log(damageTime);
+        _hit = true;
+
+        if (currentHealth > 0)
+            currentHealth--;
+        else
+            Destroy(gameObject);
+          
+        // Destroy Bullet
+        if(other.CompareTag("Damage"))
+            Destroy(other.gameObject);
+
+        //Debug.Log("Player: " + currentHealth);
     }
 
-    void Update(){
+    private void Update() {
         // Deathbomb
-        if(hit)
-            if (Time.time < damageTime + DBTime){
-                if (Bomb.dbble){
-                    currentHealth++;
-                    hit = false;
-                    Debug.Log("DEATHBOMB!");
-                }
-            }
-            else
-                hit = false;
+        if (!_hit) return;
+        
+        if (Time.time < _damageTime + DBTime) {
+
+            if (!Bomb.dbble) return;
+            
+            currentHealth++;
+            _hit = false;
+            Debug.Log("DEATHBOMB!");
+        }
+        else
+            _hit = false;
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
     
          // iFrame Animation
-        if (damageTime > 0 && Time.time < damageTime + iTime) {
+        if (_damageTime > 0 && Time.time < _damageTime + iTime) {
             
             // Increasing or Decreasing
-            if (t >= 0.99)
-                increasing = false;
-            if (t <= 0.01)
-                increasing = true;
+            if (_t >= 0.99)
+                _increasing = false;
+            if (_t <= 0.01)
+                _increasing = true;
 
             // +- t
-            if (increasing)
-                t += 1/50f;
+            if (_increasing)
+                _t += 1/50f;
             else
-                t -= 1/50f;
+                _t -= 1/50f;
 
             // Lerp
-            playerRenderer.GetComponent<SpriteRenderer>().color = new Color (255, 0, 0, t);
+            _spriteRenderer.color = new Color (255, 0, 0, _t);
             // Debug.Log(t);
                     
         } else
             // Correction because floating point rounding is dumb
-            playerRenderer.GetComponent<SpriteRenderer>().color = new Color (255, 0, 0, 1);
+            _spriteRenderer.color = new Color (255, 0, 0, 1);
  
 
     
