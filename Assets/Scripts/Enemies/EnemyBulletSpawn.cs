@@ -6,15 +6,21 @@ public class EnemyBulletSpawn : MonoBehaviour{
 
     public GameObject Shots;
     public Transform[] BulletSpawn;
-    float nextShot;
+    private float _nextShot;
     public float shotRate;
+    
+    public ObjectPool objectPool;
 
-    // Update is called once per frame
-    void FixedUpdate(){
-        if (Time.time > nextShot){
-            nextShot = Time.time + shotRate;
-            foreach (Transform pos in BulletSpawn)
-                Instantiate(Shots, pos.position, pos.rotation);
+    private void FixedUpdate() {
+        
+        if (Time.time <= _nextShot) return;
+        _nextShot = Time.time + shotRate;
+        
+        foreach (var pos in BulletSpawn) {
+            var shot = objectPool.GetPooledObject();
+            shot.Item1.transform.position = shot.Item2 + pos.position; 
+            shot.Item1.transform.rotation = shot.Item3 * pos.rotation;
+            shot.Item1.SetActive(true);
         }
     }
 }

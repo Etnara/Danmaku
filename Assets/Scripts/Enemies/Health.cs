@@ -5,30 +5,26 @@ using UnityEngine;
 public class Health : MonoBehaviour{
 
     public float startingHealth;
-    public float currentHealth { get; private set; }
- 
-
-    void Awake(){
-        currentHealth = startingHealth;
+    public float CurrentHealth { get; private set; }
+    public GameObject[] pools;
+    private void Awake(){
+        CurrentHealth = startingHealth;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    private void OnTriggerEnter2D(Collider2D other){
+        if (!other.CompareTag("Player") && !other.CompareTag("Player Bullet")) return;
         
-        if (other.tag == "Player" || other.tag == "Player Bullet"){
-
-            // Health
-            if (currentHealth > 0)
-                currentHealth--;
-            
-            else
-                Destroy(gameObject);
-
-
-            // Destroy Bullet
-            if (other.tag == "Player Bullet")
-                Destroy(other.gameObject);
-
-            // Debug.Log("Enemy: " + currentHealth);
+        // Health
+        CurrentHealth--;
+        if (CurrentHealth <= 0) {
+            Destroy(gameObject);
+            foreach (var obj in pools)
+                obj.SetActive(false);
         }
+
+            
+        // Destroy Bullet
+        if (other.CompareTag("Player Bullet"))
+            other.gameObject.SetActive(false);
     }
 }

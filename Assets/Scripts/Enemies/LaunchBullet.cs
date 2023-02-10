@@ -1,14 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour{
+public class LaunchBullet : MonoBehaviour{
 
     public float speed;
 
-    // Start is called before the first frame update
-    void Start(){
-
+     private void OnEnable() {
         GetComponent<Rigidbody2D>().velocity = transform.up * speed;
     }
 }

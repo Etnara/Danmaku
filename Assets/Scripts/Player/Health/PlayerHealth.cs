@@ -44,7 +44,8 @@ public class PlayerHealth : MonoBehaviour {
           
         // Destroy Bullet
         if(other.CompareTag("Damage"))
-            Destroy(other.gameObject);
+            // Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
 
         //Debug.Log("Player: " + currentHealth);
     }

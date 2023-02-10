@@ -12,7 +12,7 @@ public class HomingBullet : MonoBehaviour {
     public float speed;
     public float rotateSpeed;
 
-    private void Start() {
+    private void OnEnable() {
         _target = FindClosestEnemy() == null ? null: FindClosestEnemy().transform;
         _rb = GetComponent<Rigidbody2D>();
     }
