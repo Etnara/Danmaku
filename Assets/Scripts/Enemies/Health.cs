@@ -19,7 +19,9 @@ public class Health : MonoBehaviour{
         if (CurrentHealth <= 0) {
             Destroy(gameObject);
             foreach (var obj in pools)
-                obj.SetActive(false);
+                // Call DisablePool() on the object's ObjectPool component
+                obj.GetComponent<ObjectPool>().DisablePoolStart();
+                // obj.SetActive(false);
         }
 
             

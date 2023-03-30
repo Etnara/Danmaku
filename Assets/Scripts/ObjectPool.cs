@@ -38,9 +38,32 @@ public class ObjectPool : MonoBehaviour {
         return new Tuple<GameObject, Vector3, Quaternion>(newObj, _offset, _rotation);
     }
 
+   private IEnumerator DisablePool() {
+       // Debug.Log("Disabling Pool");
+       // Repeatedly remove objects from the pool until there are none left
+       while (pooledObjects.Count > 0)
+           for (var i = 0; i < pooledObjects.Count; i++) {
+               if (!pooledObjects[i].activeInHierarchy) { 
+                   // Debug.Log("test"); 
+                   Destroy(pooledObjects[i]);
+                   pooledObjects.Remove(pooledObjects[i]);
+                   i--;
+               }
+               yield return null;
+           }
+       gameObject.SetActive(false);
+       // StopCoroutine(DisablePool()); // Already called by Unity
+   }
+   
+   public void DisablePoolStart() {
+       StartCoroutine(DisablePool());
+   }
+   
    private void OnDisable() {
-       foreach (var obj in pooledObjects)
-           Destroy(obj);
-       pooledObjects.Clear();
+       // Debug.Log("OnDisable");
+       if (transform.parent.name == "Pools") return;
+       
+       if (transform.parent.GetComponentsInChildren<Transform>().GetLength(0) <= 1)
+           transform.parent.gameObject.SetActive(false);
    }
 }
