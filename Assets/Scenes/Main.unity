@@ -1609,7 +1609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drops: []
   health: {fileID: 2787263050693848624, guid: 4d4602d9b702cbf49859de5d43e91b4e, type: 3}
-  healthChance: 100
+  bomb: {fileID: 3999845015858139527, guid: 4a9bed7c338a1dc4094c7f5dd31122f0, type: 3}
+  healthChance: 50
 --- !u!1 &893480772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,6 +3149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingBombs: 3
+  currentBombs: 0
   bombObj: {fileID: 2047839446}
   Player: {fileID: 1834082594}
   shotRate: 3

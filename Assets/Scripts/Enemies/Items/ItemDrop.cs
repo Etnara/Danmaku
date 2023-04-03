@@ -9,6 +9,7 @@ public class ItemDrop : MonoBehaviour {
 
     public GameObject[] drops;
     public GameObject health;
+    public GameObject bomb;
     public float healthChance;
     
     private void OnDestroy() {
@@ -18,7 +19,6 @@ public class ItemDrop : MonoBehaviour {
         foreach (var c in drops)
             Instantiate(c);
         // Percent Chance for Health
-        if (Random.Range(0, 100) <= healthChance)
-            Instantiate(health, transform.position, new Quaternion(0, 0 , 180, 0));
+        Instantiate(Random.Range(0, 100) <= healthChance ? health : bomb, transform.position, new Quaternion(0, 0, 180, 0));
     }
 }
