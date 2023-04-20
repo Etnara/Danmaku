@@ -13,6 +13,7 @@ public class ItemDrop : MonoBehaviour {
     public float healthChance;
     
     private void OnDestroy() {
+        if(!this.gameObject.scene.isLoaded) return;
         // Guaranteed Drops
         // TODO: Make it so that the drops are spawned in a circle around the object
         // Probably add a check for the amount of items and use presets

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ObjectPool : MonoBehaviour {
     
@@ -10,6 +11,7 @@ public class ObjectPool : MonoBehaviour {
     public GameObject objectToPool;
     private Vector3 _offset;
     private Quaternion _rotation;
+    public int currentlyUsing;
     
     private void Start() {
         pooledObjects = new List<GameObject>();
@@ -38,6 +40,12 @@ public class ObjectPool : MonoBehaviour {
         return new Tuple<GameObject, Vector3, Quaternion>(newObj, _offset, _rotation);
     }
 
+   public void DisablePoolStart() {
+       if (currentlyUsing > 0) Debug.Log("Currently using: " + currentlyUsing);
+       if (currentlyUsing > 0) return;
+       StartCoroutine(DisablePool());
+   }
+   
    private IEnumerator DisablePool() {
        // Debug.Log("Disabling Pool");
        // Repeatedly remove objects from the pool until there are none left
@@ -51,19 +59,20 @@ public class ObjectPool : MonoBehaviour {
                }
                yield return null;
            }
+       // Debug.Log(gameObject.name + " Disabled");
        gameObject.SetActive(false);
        // StopCoroutine(DisablePool()); // Already called by Unity
    }
    
-   public void DisablePoolStart() {
-       StartCoroutine(DisablePool());
-   }
-   
    private void OnDisable() {
        // Debug.Log("OnDisable");
+       // Don't call if resetting the scene
+       if(!this.gameObject.scene.isLoaded) return;
        if (transform.parent.name == "Pools") return;
+       // if (!transform.parent.gameObject.activeSelf) return;
+       transform.parent.GetComponent<ParentPool>().DisableParent();
        
-       if (transform.parent.GetComponentsInChildren<Transform>().GetLength(0) <= 1)
-           transform.parent.gameObject.SetActive(false);
+       // if (transform.parent.GetComponentsInChildren<Transform>().GetLength(0) <= 1)
+       //     transform.parent.gameObject.SetActive(false);
    }
 }

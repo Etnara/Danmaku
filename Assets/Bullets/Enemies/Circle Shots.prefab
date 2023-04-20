@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7525882549247050199}
   - component: {fileID: 1381878895179409213}
   m_Layer: 0
-  m_Name: UpdatedCircleShots
+  m_Name: Circle Shots
   m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

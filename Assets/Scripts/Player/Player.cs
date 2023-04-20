@@ -63,7 +63,7 @@ public class Player : MonoBehaviour {
             return;
         for (var i = 0; i < upgradeGraze.Length; i++) {
             if (Math.Abs(graze - upgradeGraze[i]) > 0.5) continue;
-                Debug.Log("Upgrade");
+                // Debug.Log("Upgrade");
                 _shotLevel = i + 1;
                 // poolLevels[i].SetActive(false);
                 // Disable all singular pools in the current pool level

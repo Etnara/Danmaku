@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSpeed: 2
-  defaultRotateSpeed: 500
+  defaultRotateSpeed: 1000
   defaultRange: 1
   collect: 0
 --- !u!50 &2787263050693848626
