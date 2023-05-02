@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
@@ -79,11 +80,14 @@ public class EnemySpawner : MonoBehaviour {
             // Debug.Log(currentEnemies);
             yield return null;
         }
-        
+
+        yield return new WaitForSecondsRealtime(3);
         gameObject.SetActive(false);
     }
 
     private void OnDisable() {
-        Debug.Log("Spawner Disabled");
+        // Debug.Log("Spawner Disabled");
+        if(!this.gameObject.scene.isLoaded) return;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

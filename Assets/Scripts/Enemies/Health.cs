@@ -27,9 +27,11 @@ public class Health : MonoBehaviour{
     }
 
     private void OnDestroy() {
-        Debug.Log("Kill");
-        Debug.Log("Before Kill: " + FindObjectOfType<EnemySpawner>().currentEnemies);
-        FindObjectOfType<EnemySpawner>().currentEnemies--;
-        Debug.Log("After Kill: " + FindObjectOfType<EnemySpawner>().currentEnemies);
+        // Debug.Log("Kill");
+        var enemySpawner = FindObjectOfType<EnemySpawner>();
+        if (enemySpawner == null) return;
+        // Debug.Log("Before Kill: " + enemySpawner.currentEnemies);
+        enemySpawner.currentEnemies--;
+        // Debug.Log("After Kill: " + enemySpawner.currentEnemies);
     }
 }

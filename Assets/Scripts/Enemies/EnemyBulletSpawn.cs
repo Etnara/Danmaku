@@ -50,7 +50,8 @@ public class EnemyBulletSpawn : MonoBehaviour{
     private void OnDestroy() { 
         // Call DisablePool() on the object's ObjectPool component
         objectPool.currentlyUsing--;
-        objectPool.DisablePoolStart();
+        if (objectPool!= null)
+            objectPool.DisablePoolStart();
         // objectPool.SetActive(false);
     }
 }

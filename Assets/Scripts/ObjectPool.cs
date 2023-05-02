@@ -27,10 +27,14 @@ public class ObjectPool : MonoBehaviour {
     }
    public Tuple<GameObject, Vector3, Quaternion> GetPooledObject() {
         // Pull from the list of pooled objects_
-        foreach (var obj in pooledObjects.Where(obj => !obj.activeInHierarchy)) {
+        // foreach (var obj in pooledObjects.Where(obj => !obj.activeInHierarchy)) {
             // Debug.Log("Pulled from pool");
-            return new Tuple<GameObject, Vector3, Quaternion>(obj, _offset, _rotation);
-        }
+            // return new Tuple<GameObject, Vector3, Quaternion>(obj, _offset, _rotation);
+        // }
+
+        foreach (var obj in pooledObjects)
+            if (!obj.activeInHierarchy)
+                return new Tuple<GameObject, Vector3, Quaternion>(obj, _offset, _rotation);
 
         // If there are no objects in the pool, create a new one
         // Debug.Log("Created new object");
@@ -41,7 +45,7 @@ public class ObjectPool : MonoBehaviour {
     }
 
    public void DisablePoolStart() {
-       if (currentlyUsing > 0) Debug.Log("Currently using: " + currentlyUsing);
+       // if (currentlyUsing > 0) Debug.Log("Currently using: " + currentlyUsing);
        if (currentlyUsing > 0) return;
        StartCoroutine(DisablePool());
    }

@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public class PlayerHealth : MonoBehaviour {
 
     public float startingHealth;
     public float currentHealth;
+    public PauseMenu pauseMenu;
+    
     private float _damageTime;
     private bool _hit;
     public float DBTime;
@@ -40,7 +43,11 @@ public class PlayerHealth : MonoBehaviour {
         if (currentHealth > 0)
             currentHealth--;
         else
+        {
+            pauseMenu.DeathCoroutine();
             Destroy(gameObject);
+        }
+
           
         // Destroy Bullet
         if(other.CompareTag("Damage"))
@@ -90,9 +97,5 @@ public class PlayerHealth : MonoBehaviour {
         } else
             // Correction because floating point rounding is dumb
             _spriteRenderer.color = new Color (255, 0, 0, 1);
- 
-
-    
     }
-
 }

@@ -15,7 +15,9 @@ public class BossHealthBarControl : MonoBehaviour {
     }
 
     private void OnDestroy() {
+        if (_healthBar == null) return;
         _healthBar.enemy = null;
-        _healthBar.gameObject.SetActive(false);
+        if (_healthBar.gameObject.activeSelf)
+            _healthBar.gameObject.SetActive(false);
     }
 }
