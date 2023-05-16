@@ -12,6 +12,8 @@ public class BasicEnemyMovement : MonoBehaviour{
     public Vector2 MoveDirection;
     public Vector2 Velocity;
 
+    public bool sendExplosion;
+
     void FixedUpdate(){
 
         if (curWaypoint < Waypoints.Length){
@@ -30,6 +32,8 @@ public class BasicEnemyMovement : MonoBehaviour{
         else{
             if (patrol)
                 curWaypoint = 0;
+            else if (sendExplosion)
+                GetComponent<ExplodingEnemy>().Explode();
             else
                 Velocity = Vector3.zero;
         }

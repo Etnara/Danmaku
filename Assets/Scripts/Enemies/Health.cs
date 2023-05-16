@@ -25,7 +25,7 @@ public class Health : MonoBehaviour{
         if (other.CompareTag("Player Bullet"))
             other.gameObject.SetActive(false);
     }
-
+    
     private void OnDestroy() {
         // Debug.Log("Kill");
         var enemySpawner = FindObjectOfType<EnemySpawner>();

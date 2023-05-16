@@ -11,6 +11,7 @@ public class SpawnerElement {
     public GameObject prefab;
     public int time;
     public Vector3 offset;
+    public Vector3 bodyOffset;
     public bool mirror;
 }
 
@@ -40,6 +41,7 @@ public class EnemySpawner : MonoBehaviour {
                 yield return new WaitForSeconds(3);
                 
                 var tmp = Instantiate(spawns[i].prefab, transform.position + spawns[i].offset, Quaternion.identity);
+                tmp.transform.Find("Body").position += spawns[i].bodyOffset;
                 
                 if (spawns[i].mirror) {
                     var tmpTransformScale = tmp.transform.localScale;
@@ -62,13 +64,14 @@ public class EnemySpawner : MonoBehaviour {
                 // Instantiate(spawns[i].prefab, transform.position + spawns[i].offset, Quaternion.identity);
                 
                 var tmp = Instantiate(spawns[i].prefab, transform.position + spawns[i].offset, Quaternion.identity);
+                tmp.transform.Find("Body").position += spawns[i].bodyOffset;
                 
                 if (spawns[i].mirror) {
                     var tmpTransformScale = tmp.transform.localScale;
                     tmpTransformScale = new Vector3(-tmpTransformScale.x, tmpTransformScale.y, tmpTransformScale.z);
                     tmp.transform.localScale = tmpTransformScale;
                 }
-                
+
                 currentEnemies++;
                 i++;
             }
